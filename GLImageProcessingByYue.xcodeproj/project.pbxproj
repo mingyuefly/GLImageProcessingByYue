@@ -1,0 +1,405 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AAA39AE51FBBE8CC0029A9F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA39AE41FBBE8CC0029A9F5 /* AppDelegate.m */; };
+		AAA39AE81FBBE8CC0029A9F5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA39AE71FBBE8CC0029A9F5 /* ViewController.m */; };
+		AAA39AEB1FBBE8CC0029A9F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAA39AE91FBBE8CC0029A9F5 /* Main.storyboard */; };
+		AAA39AED1FBBE8CC0029A9F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAA39AEC1FBBE8CC0029A9F5 /* Assets.xcassets */; };
+		AAA39AF01FBBE8CC0029A9F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAA39AEE1FBBE8CC0029A9F5 /* LaunchScreen.storyboard */; };
+		AAA39AF31FBBE8CC0029A9F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA39AF21FBBE8CC0029A9F5 /* main.m */; };
+		AAA39AFB1FBBEA080029A9F5 /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA39AFA1FBBEA080029A9F5 /* EAGLView.m */; };
+		AAA999B220410CD900F199D2 /* sharpenessVertexShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = AAA999B120410CD900F199D2 /* sharpenessVertexShader.vsh */; };
+		AAA999B82043BD1C00F199D2 /* exposure_GL.fsh in Resources */ = {isa = PBXBuildFile; fileRef = AAA999B72043BD1C00F199D2 /* exposure_GL.fsh */; };
+		AAFCD945202BFEF7001F1379 /* Image.png in Resources */ = {isa = PBXBuildFile; fileRef = AAFCD944202BFEF7001F1379 /* Image.png */; };
+		AAFCD94E202C020C001F1379 /* MYShaderCompiler.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFCD947202C020C001F1379 /* MYShaderCompiler.m */; };
+		AAFCD94F202C020C001F1379 /* rgb_GL.fsh in Resources */ = {isa = PBXBuildFile; fileRef = AAFCD948202C020C001F1379 /* rgb_GL.fsh */; };
+		AAFCD950202C020C001F1379 /* fragmentShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = AAFCD949202C020C001F1379 /* fragmentShader.fsh */; };
+		AAFCD951202C020C001F1379 /* luminance.fsh in Resources */ = {isa = PBXBuildFile; fileRef = AAFCD94A202C020C001F1379 /* luminance.fsh */; };
+		AAFCD952202C020C001F1379 /* Brightness_GL.fsh in Resources */ = {isa = PBXBuildFile; fileRef = AAFCD94C202C020C001F1379 /* Brightness_GL.fsh */; };
+		AAFCD953202C020C001F1379 /* vertexShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = AAFCD94D202C020C001F1379 /* vertexShader.vsh */; };
+		AAFCD956202C2800001F1379 /* TextureLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFCD955202C2800001F1379 /* TextureLoader.m */; };
+		AAFCD959202C3DE7001F1379 /* saturation_GL.fsh in Resources */ = {isa = PBXBuildFile; fileRef = AAFCD958202C3DE7001F1379 /* saturation_GL.fsh */; };
+		AAFCD95B202C3EB3001F1379 /* contrast_GL.fsh in Resources */ = {isa = PBXBuildFile; fileRef = AAFCD95A202C3EB3001F1379 /* contrast_GL.fsh */; };
+		AAFCD95D202C3F1E001F1379 /* hue_GL.fsh in Resources */ = {isa = PBXBuildFile; fileRef = AAFCD95C202C3F1E001F1379 /* hue_GL.fsh */; };
+		AAFCD95F202C40B7001F1379 /* sharpness_GL.fsh in Resources */ = {isa = PBXBuildFile; fileRef = AAFCD95E202C40B7001F1379 /* sharpness_GL.fsh */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AAA39AE01FBBE8CC0029A9F5 /* GLImageProcessingByYue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLImageProcessingByYue.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAA39AE31FBBE8CC0029A9F5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		AAA39AE41FBBE8CC0029A9F5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		AAA39AE61FBBE8CC0029A9F5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		AAA39AE71FBBE8CC0029A9F5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		AAA39AEA1FBBE8CC0029A9F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AAA39AEC1FBBE8CC0029A9F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AAA39AEF1FBBE8CC0029A9F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AAA39AF11FBBE8CC0029A9F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAA39AF21FBBE8CC0029A9F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AAA39AF91FBBEA080029A9F5 /* EAGLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EAGLView.h; sourceTree = "<group>"; };
+		AAA39AFA1FBBEA080029A9F5 /* EAGLView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EAGLView.m; sourceTree = "<group>"; };
+		AAA999B120410CD900F199D2 /* sharpenessVertexShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sharpenessVertexShader.vsh; sourceTree = "<group>"; };
+		AAA999B72043BD1C00F199D2 /* exposure_GL.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = exposure_GL.fsh; sourceTree = "<group>"; };
+		AAFCD944202BFEF7001F1379 /* Image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Image.png; sourceTree = "<group>"; };
+		AAFCD947202C020C001F1379 /* MYShaderCompiler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYShaderCompiler.m; sourceTree = "<group>"; };
+		AAFCD948202C020C001F1379 /* rgb_GL.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = rgb_GL.fsh; sourceTree = "<group>"; };
+		AAFCD949202C020C001F1379 /* fragmentShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = fragmentShader.fsh; sourceTree = "<group>"; };
+		AAFCD94A202C020C001F1379 /* luminance.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = luminance.fsh; sourceTree = "<group>"; };
+		AAFCD94B202C020C001F1379 /* MYShaderCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYShaderCompiler.h; sourceTree = "<group>"; };
+		AAFCD94C202C020C001F1379 /* Brightness_GL.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Brightness_GL.fsh; sourceTree = "<group>"; };
+		AAFCD94D202C020C001F1379 /* vertexShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = vertexShader.vsh; sourceTree = "<group>"; };
+		AAFCD954202C2800001F1379 /* TextureLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextureLoader.h; sourceTree = "<group>"; };
+		AAFCD955202C2800001F1379 /* TextureLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextureLoader.m; sourceTree = "<group>"; };
+		AAFCD958202C3DE7001F1379 /* saturation_GL.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = saturation_GL.fsh; sourceTree = "<group>"; };
+		AAFCD95A202C3EB3001F1379 /* contrast_GL.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = contrast_GL.fsh; sourceTree = "<group>"; };
+		AAFCD95C202C3F1E001F1379 /* hue_GL.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = hue_GL.fsh; sourceTree = "<group>"; };
+		AAFCD95E202C40B7001F1379 /* sharpness_GL.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = sharpness_GL.fsh; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AAA39ADD1FBBE8CC0029A9F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AAA39AD71FBBE8CC0029A9F5 = {
+			isa = PBXGroup;
+			children = (
+				AAA39AE21FBBE8CC0029A9F5 /* GLImageProcessingByYue */,
+				AAA39AE11FBBE8CC0029A9F5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AAA39AE11FBBE8CC0029A9F5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AAA39AE01FBBE8CC0029A9F5 /* GLImageProcessingByYue.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AAA39AE21FBBE8CC0029A9F5 /* GLImageProcessingByYue */ = {
+			isa = PBXGroup;
+			children = (
+				AAFCD944202BFEF7001F1379 /* Image.png */,
+				AAA39AE31FBBE8CC0029A9F5 /* AppDelegate.h */,
+				AAA39AE41FBBE8CC0029A9F5 /* AppDelegate.m */,
+				AAFCD946202C020C001F1379 /* utilities */,
+				AAA39AF91FBBEA080029A9F5 /* EAGLView.h */,
+				AAA39AFA1FBBEA080029A9F5 /* EAGLView.m */,
+				AAA39AE61FBBE8CC0029A9F5 /* ViewController.h */,
+				AAA39AE71FBBE8CC0029A9F5 /* ViewController.m */,
+				AAA39AE91FBBE8CC0029A9F5 /* Main.storyboard */,
+				AAA39AEC1FBBE8CC0029A9F5 /* Assets.xcassets */,
+				AAA39AEE1FBBE8CC0029A9F5 /* LaunchScreen.storyboard */,
+				AAA39AF11FBBE8CC0029A9F5 /* Info.plist */,
+				AAA39AF21FBBE8CC0029A9F5 /* main.m */,
+			);
+			path = GLImageProcessingByYue;
+			sourceTree = "<group>";
+		};
+		AAFCD946202C020C001F1379 /* utilities */ = {
+			isa = PBXGroup;
+			children = (
+				AAFCD94B202C020C001F1379 /* MYShaderCompiler.h */,
+				AAFCD947202C020C001F1379 /* MYShaderCompiler.m */,
+				AAFCD954202C2800001F1379 /* TextureLoader.h */,
+				AAFCD955202C2800001F1379 /* TextureLoader.m */,
+				AAFCD948202C020C001F1379 /* rgb_GL.fsh */,
+				AAFCD94C202C020C001F1379 /* Brightness_GL.fsh */,
+				AAFCD95A202C3EB3001F1379 /* contrast_GL.fsh */,
+				AAFCD958202C3DE7001F1379 /* saturation_GL.fsh */,
+				AAFCD95C202C3F1E001F1379 /* hue_GL.fsh */,
+				AAFCD949202C020C001F1379 /* fragmentShader.fsh */,
+				AAFCD94A202C020C001F1379 /* luminance.fsh */,
+				AAFCD94D202C020C001F1379 /* vertexShader.vsh */,
+				AAA999B120410CD900F199D2 /* sharpenessVertexShader.vsh */,
+				AAFCD95E202C40B7001F1379 /* sharpness_GL.fsh */,
+				AAA999B72043BD1C00F199D2 /* exposure_GL.fsh */,
+			);
+			path = utilities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AAA39ADF1FBBE8CC0029A9F5 /* GLImageProcessingByYue */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AAA39AF61FBBE8CC0029A9F5 /* Build configuration list for PBXNativeTarget "GLImageProcessingByYue" */;
+			buildPhases = (
+				AAA39ADC1FBBE8CC0029A9F5 /* Sources */,
+				AAA39ADD1FBBE8CC0029A9F5 /* Frameworks */,
+				AAA39ADE1FBBE8CC0029A9F5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GLImageProcessingByYue;
+			productName = GLImageProcessingByYue;
+			productReference = AAA39AE01FBBE8CC0029A9F5 /* GLImageProcessingByYue.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AAA39AD81FBBE8CC0029A9F5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = guomingyue;
+				TargetAttributes = {
+					AAA39ADF1FBBE8CC0029A9F5 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = AAA39ADB1FBBE8CC0029A9F5 /* Build configuration list for PBXProject "GLImageProcessingByYue" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AAA39AD71FBBE8CC0029A9F5;
+			productRefGroup = AAA39AE11FBBE8CC0029A9F5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AAA39ADF1FBBE8CC0029A9F5 /* GLImageProcessingByYue */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AAA39ADE1FBBE8CC0029A9F5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAA999B220410CD900F199D2 /* sharpenessVertexShader.vsh in Resources */,
+				AAA39AF01FBBE8CC0029A9F5 /* LaunchScreen.storyboard in Resources */,
+				AAA39AED1FBBE8CC0029A9F5 /* Assets.xcassets in Resources */,
+				AAFCD951202C020C001F1379 /* luminance.fsh in Resources */,
+				AAFCD95F202C40B7001F1379 /* sharpness_GL.fsh in Resources */,
+				AAFCD952202C020C001F1379 /* Brightness_GL.fsh in Resources */,
+				AAFCD953202C020C001F1379 /* vertexShader.vsh in Resources */,
+				AAFCD95D202C3F1E001F1379 /* hue_GL.fsh in Resources */,
+				AAFCD94F202C020C001F1379 /* rgb_GL.fsh in Resources */,
+				AAFCD95B202C3EB3001F1379 /* contrast_GL.fsh in Resources */,
+				AAA39AEB1FBBE8CC0029A9F5 /* Main.storyboard in Resources */,
+				AAFCD950202C020C001F1379 /* fragmentShader.fsh in Resources */,
+				AAFCD959202C3DE7001F1379 /* saturation_GL.fsh in Resources */,
+				AAA999B82043BD1C00F199D2 /* exposure_GL.fsh in Resources */,
+				AAFCD945202BFEF7001F1379 /* Image.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AAA39ADC1FBBE8CC0029A9F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAA39AE81FBBE8CC0029A9F5 /* ViewController.m in Sources */,
+				AAA39AFB1FBBEA080029A9F5 /* EAGLView.m in Sources */,
+				AAA39AF31FBBE8CC0029A9F5 /* main.m in Sources */,
+				AAFCD94E202C020C001F1379 /* MYShaderCompiler.m in Sources */,
+				AAFCD956202C2800001F1379 /* TextureLoader.m in Sources */,
+				AAA39AE51FBBE8CC0029A9F5 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AAA39AE91FBBE8CC0029A9F5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AAA39AEA1FBBE8CC0029A9F5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AAA39AEE1FBBE8CC0029A9F5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AAA39AEF1FBBE8CC0029A9F5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AAA39AF41FBBE8CC0029A9F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		AAA39AF51FBBE8CC0029A9F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AAA39AF71FBBE8CC0029A9F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z9UD67WPFX;
+				INFOPLIST_FILE = GLImageProcessingByYue/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = www.mingyuefly.com.GLImageProcessingByYue;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AAA39AF81FBBE8CC0029A9F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z9UD67WPFX;
+				INFOPLIST_FILE = GLImageProcessingByYue/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = www.mingyuefly.com.GLImageProcessingByYue;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AAA39ADB1FBBE8CC0029A9F5 /* Build configuration list for PBXProject "GLImageProcessingByYue" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAA39AF41FBBE8CC0029A9F5 /* Debug */,
+				AAA39AF51FBBE8CC0029A9F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AAA39AF61FBBE8CC0029A9F5 /* Build configuration list for PBXNativeTarget "GLImageProcessingByYue" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAA39AF71FBBE8CC0029A9F5 /* Debug */,
+				AAA39AF81FBBE8CC0029A9F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AAA39AD81FBBE8CC0029A9F5 /* Project object */;
+}

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="FG1-E4-FNs">
+                                <rect key="frame" x="18" y="568" width="339" height="31"/>
+                                <connections>
+                                    <action selector="sliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="MUu-dL-9Gj"/>
+                                </connections>
+                            </slider>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAW-jv-yPZ">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="Brightness" id="Jco-KT-MTB"/>
+                                    <tabBarItem tag="1" title="Contrast" id="sno-gY-hA8"/>
+                                    <tabBarItem tag="2" title="rgb" id="FW3-8A-P4q"/>
+                                    <tabBarItem tag="3" title="Hue" id="5jW-6Q-nHm"/>
+                                    <tabBarItem tag="4" title="exposure" id="2ZI-Fn-6YH"/>
+                                </items>
+                            </tabBar>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="FG1-E4-FNs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="3BA-Zf-1ok"/>
+                            <constraint firstItem="MAW-jv-yPZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4ao-Lh-GxE"/>
+                            <constraint firstItem="MAW-jv-yPZ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="BaY-pB-mA2"/>
+                            <constraint firstItem="MAW-jv-yPZ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="X8e-ab-Fhf"/>
+                            <constraint firstAttribute="trailing" secondItem="FG1-E4-FNs" secondAttribute="trailing" constant="20" id="hUa-G6-xG7"/>
+                            <constraint firstItem="MAW-jv-yPZ" firstAttribute="top" secondItem="FG1-E4-FNs" secondAttribute="bottom" constant="20" id="mUJ-FC-h7d"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="slider" destination="FG1-E4-FNs" id="R8I-bh-S9F"/>
+                        <outlet property="tabBar" destination="MAW-jv-yPZ" id="1vk-ed-t28"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
