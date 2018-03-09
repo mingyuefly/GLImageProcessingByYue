@@ -25,7 +25,7 @@
     GLint width;
     GLint height;
     UIImage *processImage;
-    GLuint texName;
+    GLuint originalTexture;
     
     MYShaderCompiler *renderShader;
     MYShaderCompiler *brightnessShader;
@@ -36,29 +36,51 @@
     MYShaderCompiler *rgbShader;
     MYShaderCompiler *exposureShader;
     
-    GLuint _positionSlot2;
-    GLuint _textureSlot2;
-    GLuint _textureCoordSlot2;
-    
-    GLuint _positionSlot;
-    GLuint _textureSlot;
-    GLuint _textureCoordSlot;
+    GLuint _renderPositionSlot;
+    GLuint _renderTextureSlot;
+    GLuint _renderTextureCoordSlot;
     
     GLuint filterFrameBuffer;
     GLuint filterTexture;
     
     GLuint _brightness;
+    GLuint _brightnessPositionSlot;
+    GLuint _brightnessTextureSlot;
+    GLuint _brightnessTextureCoordSlot;
+    
     GLuint _contrast;
+    GLuint _contrastPositionSlot;
+    GLuint _contrastTextureSlot;
+    GLuint _contrastTextureCoordSlot;
+    
     GLuint _saturation;
+    GLuint _saturationPositionSlot;
+    GLuint _saturationTextureSlot;
+    GLuint _saturationTextureCoordSlot;
+    
     GLuint _hueAdjust;
+    GLuint _hueAdjustPositionSlot;
+    GLuint _hueAdjustTextureSlot;
+    GLuint _hueAdjustTextureCoordSlot;
+    
     GLuint _sharpness;
     GLuint _imageWidthFactor;
     GLuint _imageHeightFactor;
+    GLuint _sharpnessPositionSlot;
+    GLuint _sharpnessTextureSlot;
+    GLuint _sharpnessTextureCoordSlot;
+    
     GLuint _exposure;
+    GLuint _exposurePositionSlot;
+    GLuint _exposureTextureSlot;
+    GLuint _exposureTextureCoordSlot;
     
     GLuint _green;
     GLuint _red;
     GLuint _blue;
+    GLuint _rgbPositionSlot;
+    GLuint _rgbTextureSlot;
+    GLuint _rgbTextureCoordSlot;
 }
 @end
 
@@ -74,9 +96,10 @@
 
 -(void)setupView
 {
-    processImage = [UIImage imageNamed:@"Image.png"];
-    //texName = [TextureLoader loadTexture:processImage];
     [self setupContext];
+    processImage = [UIImage imageNamed:@"Image.png"];
+    originalTexture = [TextureLoader loadTexture:processImage];
+    
     [self setupCAEAGLayer:self.bounds];
 }
 
@@ -87,8 +110,7 @@
     [self setupRenderBuffers];
     [self setupViewPort];
     [self setupShader];
-    [self drawTrangle];
-    //[self renderToScreen];
+    [self renderToScreenWithTexture:originalTexture];
 }
 
 -(void)setupContext
@@ -183,79 +205,71 @@
 
 -(void)setupShader
 {
-//    saturationShader = [[MYShaderCompiler alloc] initWithVertexShader:@"vertexShader.vsh" fragmentShader:@"saturation_GL.fsh"];
-//    [saturationShader prepareToDraw];
-//    _positionSlot = [saturationShader attributeIndex:@"a_Position"];
-//    _textureSlot = [saturationShader uniformIndex:@"u_Texture"];
-//    _textureCoordSlot = [saturationShader attributeIndex:@"a_TexCoordIn"];
-//    _saturation = [saturationShader uniformIndex:@"saturation"];
-    
     rgbShader = [[MYShaderCompiler alloc] initWithVertexShader:@"vertexShader.vsh" fragmentShader:@"rgb_GL.fsh"];
     [rgbShader prepareToDraw];
-    _positionSlot = [rgbShader attributeIndex:@"a_Position"];
-    _textureSlot = [rgbShader uniformIndex:@"u_Texture"];
-    _textureCoordSlot = [rgbShader attributeIndex:@"a_TexCoordIn"];
+    _rgbPositionSlot = [rgbShader attributeIndex:@"a_Position"];
+    _rgbTextureSlot = [rgbShader uniformIndex:@"u_Texture"];
+    _rgbTextureCoordSlot = [rgbShader attributeIndex:@"a_TexCoordIn"];
     _green = [rgbShader uniformIndex:@"redAdjustment"];
     _red = [rgbShader uniformIndex:@"greenAdjustment"];
     _blue = [rgbShader uniformIndex:@"blueAdjustment"];
     
     brightnessShader = [[MYShaderCompiler alloc] initWithVertexShader:@"vertexShader.vsh" fragmentShader:@"Brightness_GL.fsh"];
     [brightnessShader prepareToDraw];
-    _positionSlot = [brightnessShader attributeIndex:@"a_Position"];
-    _textureSlot = [brightnessShader uniformIndex:@"u_Texture"];
-    _textureCoordSlot = [brightnessShader attributeIndex:@"a_TexCoordIn"];
+    _brightnessPositionSlot = [brightnessShader attributeIndex:@"a_Position"];
+    _brightnessTextureSlot = [brightnessShader uniformIndex:@"u_Texture"];
+    _brightnessTextureCoordSlot = [brightnessShader attributeIndex:@"a_TexCoordIn"];
     _brightness = [brightnessShader uniformIndex:@"brightness"];
     
     contrastShader = [[MYShaderCompiler alloc] initWithVertexShader:@"vertexShader.vsh" fragmentShader:@"contrast_GL.fsh"];
     [contrastShader prepareToDraw];
-    _positionSlot = [contrastShader attributeIndex:@"a_Position"];
-    _textureSlot = [contrastShader uniformIndex:@"u_Texture"];
-    _textureCoordSlot = [contrastShader attributeIndex:@"a_TexCoordIn"];
+    _contrastPositionSlot = [contrastShader attributeIndex:@"a_Position"];
+    _contrastTextureSlot = [contrastShader uniformIndex:@"u_Texture"];
+    _contrastTextureCoordSlot = [contrastShader attributeIndex:@"a_TexCoordIn"];
     _contrast = [contrastShader uniformIndex:@"contrast"];
     
     hueShader = [[MYShaderCompiler alloc] initWithVertexShader:@"vertexShader.vsh" fragmentShader:@"hue_GL.fsh"];
     [hueShader prepareToDraw];
-    _positionSlot = [hueShader attributeIndex:@"a_Position"];
-    _textureSlot = [hueShader uniformIndex:@"u_Texture"];
-    _textureCoordSlot = [hueShader attributeIndex:@"a_TexCoordIn"];
+    _hueAdjustPositionSlot = [hueShader attributeIndex:@"a_Position"];
+    _hueAdjustTextureSlot = [hueShader uniformIndex:@"u_Texture"];
+    _hueAdjustTextureCoordSlot = [hueShader attributeIndex:@"a_TexCoordIn"];
     _hueAdjust = [hueShader uniformIndex:@"hueAdjust"];
     
     exposureShader = [[MYShaderCompiler alloc] initWithVertexShader:@"vertexShader.vsh" fragmentShader:@"exposure_GL.fsh"];
     [exposureShader prepareToDraw];
-    _positionSlot = [exposureShader attributeIndex:@"a_Position"];
-    _textureSlot = [exposureShader uniformIndex:@"u_Texture"];
-    _textureCoordSlot = [exposureShader attributeIndex:@"a_TexCoordIn"];
+    _exposurePositionSlot = [exposureShader attributeIndex:@"a_Position"];
+    _exposureTextureSlot = [exposureShader uniformIndex:@"u_Texture"];
+    _exposureTextureCoordSlot = [exposureShader attributeIndex:@"a_TexCoordIn"];
     _exposure = [exposureShader uniformIndex:@"exposure"];
     
-//    saturationShader = [[MYShaderCompiler alloc] initWithVertexShader:@"vertexShader.vsh" fragmentShader:@"saturation_GL.fsh"];
-//    [saturationShader prepareToDraw];
-//    _positionSlot = [saturationShader attributeIndex:@"a_Position"];
-//    _textureSlot = [saturationShader uniformIndex:@"u_Texture"];
-//    _textureCoordSlot = [saturationShader attributeIndex:@"a_TexCoordIn"];
-//    _saturation = [saturationShader uniformIndex:@"saturation"];
+    saturationShader = [[MYShaderCompiler alloc] initWithVertexShader:@"vertexShader.vsh" fragmentShader:@"saturation_GL.fsh"];
+    [saturationShader prepareToDraw];
+    _saturationPositionSlot = [saturationShader attributeIndex:@"a_Position"];
+    _saturationTextureSlot = [saturationShader uniformIndex:@"u_Texture"];
+    _saturationTextureCoordSlot = [saturationShader attributeIndex:@"a_TexCoordIn"];
+    _saturation = [saturationShader uniformIndex:@"saturation"];
     
-//    sharpnessShader = [[MYShaderCompiler alloc] initWithVertexShader:@"sharpenessVertexShader.vsh" fragmentShader:@"sharpness_GL.fsh"];
-//    [sharpnessShader prepareToDraw];
-//    _positionSlot = [sharpnessShader attributeIndex:@"a_Position"];
-//    _textureSlot = [sharpnessShader uniformIndex:@"u_Texture"];
-//    _textureCoordSlot = [sharpnessShader attributeIndex:@"a_TexCoordIn"];
-//    _sharpness = [sharpnessShader uniformIndex:@"sharpness"];
-//    _imageWidthFactor = [sharpnessShader uniformIndex:@"imageWidthFactor"];
-//    _imageHeightFactor = [sharpnessShader uniformIndex:@"imageHeightFactor"];
+    sharpnessShader = [[MYShaderCompiler alloc] initWithVertexShader:@"sharpenessVertexShader.vsh" fragmentShader:@"sharpness_GL.fsh"];
+    [sharpnessShader prepareToDraw];
+    _sharpnessPositionSlot = [sharpnessShader attributeIndex:@"a_Position"];
+    _sharpnessTextureSlot = [sharpnessShader uniformIndex:@"u_Texture"];
+    _sharpnessTextureCoordSlot = [sharpnessShader attributeIndex:@"a_TexCoordIn"];
+    _sharpness = [sharpnessShader uniformIndex:@"sharpness"];
+    _imageWidthFactor = [sharpnessShader uniformIndex:@"imageWidthFactor"];
+    _imageHeightFactor = [sharpnessShader uniformIndex:@"imageHeightFactor"];
     
     renderShader = [[MYShaderCompiler alloc] initWithVertexShader:@"vertexShader.vsh" fragmentShader:@"fragmentShader.fsh"];
     [renderShader prepareToDraw];
-    _positionSlot2 = [renderShader attributeIndex:@"a_Position"];
-    _textureSlot2 = [renderShader uniformIndex:@"u_Texture"];
-    _textureCoordSlot2 = [renderShader attributeIndex:@"a_TexCoordIn"];
+    _renderPositionSlot = [renderShader attributeIndex:@"a_Position"];
+    _renderTextureSlot = [renderShader uniformIndex:@"u_Texture"];
+    _renderTextureCoordSlot = [renderShader attributeIndex:@"a_TexCoordIn"];
 }
 
--(void)drawTrangle
+-(void)renderToScreenWithTexture:(GLint)texture
 {
-    texName = [TextureLoader loadTexture:processImage];
-    glActiveTexture(GL_TEXTURE5);
-    glBindTexture(GL_TEXTURE_2D, texName);
-    glUniform1i(_textureSlot2, 5);
+    glBindFramebuffer(GL_FRAMEBUFFER, viewFramebuffer);
+    [self setupViewPort];
+    [renderShader prepareToDraw];
     
     UIImage *image = processImage;
     CGRect realRect = AVMakeRectWithAspectRatioInsideRect(image.size, self.bounds);
@@ -268,8 +282,8 @@
         -widthRatio, heightRatio, 0,   //左上
         widthRatio, heightRatio, 0     //右上
     };
-    glEnableVertexAttribArray(_positionSlot2);
-    glVertexAttribPointer(_positionSlot2, 3, GL_FLOAT, GL_FALSE, 0, vertices);
+    glEnableVertexAttribArray(_renderPositionSlot);
+    glVertexAttribPointer(_renderPositionSlot, 3, GL_FLOAT, GL_FALSE, 0, vertices);
     
     // normal
     static const GLfloat coords[] = {
@@ -278,31 +292,26 @@
         0, 1,
         1, 1
     };
-    glEnableVertexAttribArray(_textureCoordSlot2);
-    glVertexAttribPointer(_textureCoordSlot2, 2, GL_FLOAT, GL_FALSE, 0, coords);
+    glEnableVertexAttribArray(_renderTextureCoordSlot);
+    glVertexAttribPointer(_renderTextureCoordSlot, 2, GL_FLOAT, GL_FALSE, 0, coords);
+    
+    glActiveTexture(GL_TEXTURE5);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glUniform1i(_renderTextureSlot, 5);
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     [context presentRenderbuffer:GL_RENDERBUFFER];
 }
 
--(void)activeTexture
-{
-    glActiveTexture(GL_TEXTURE5);
-    glBindTexture(GL_TEXTURE_2D, texName);
-    glUniform1i(_textureSlot, 5);
-}
-
-- (void)drawRawImage {
-    // [self activeTexture];
-    
+- (void)drawRawImageWithPositionSlot:(GLuint)positionSlot TextureCoordSlot:(GLuint)textureCoordSlot {
     // 传递顶点数据
     const GLfloat vertices[] = {
         -1, -1, 0,   //左下
         1,  -1, 0,   //右下
         -1, 1,  0,   //左上
         1,  1,  0 }; //右上
-    glEnableVertexAttribArray(_positionSlot);
-    glVertexAttribPointer(_positionSlot, 3, GL_FLOAT, GL_FALSE, 0, vertices);
+    glEnableVertexAttribArray(positionSlot);
+    glVertexAttribPointer(positionSlot, 3, GL_FLOAT, GL_FALSE, 0, vertices);
     
     // normal
     static const GLfloat coords[] = {
@@ -311,50 +320,10 @@
         0, 1,
         1, 1
     };
-    glEnableVertexAttribArray(_textureCoordSlot);
-    glVertexAttribPointer(_textureCoordSlot, 2, GL_FLOAT, GL_FALSE, 0, coords);
+    glEnableVertexAttribArray(textureCoordSlot);
+    glVertexAttribPointer(textureCoordSlot, 2, GL_FLOAT, GL_FALSE, 0, coords);
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-}
-
--(void)renderToScreen
-{
-    glBindFramebuffer(GL_FRAMEBUFFER, viewFramebuffer);
-    [self setupViewPort];
-    [renderShader prepareToDraw];
-    
-    // 传递顶点坐标
-    UIImage *image = processImage;
-    realRect = AVMakeRectWithAspectRatioInsideRect(image.size, self.bounds);
-    CGFloat widthRatio = realRect.size.width/self.bounds.size.width;
-    CGFloat heightRatio = realRect.size.height/self.bounds.size.height;
-    
-    const GLfloat vertices[] = {
-        -widthRatio, -heightRatio, 0,
-        widthRatio, -heightRatio, 0,
-        -widthRatio, heightRatio, 0,
-        widthRatio, heightRatio, 0
-    };
-    glEnableVertexAttribArray(_positionSlot2);
-    glVertexAttribPointer(_positionSlot2, 3, GL_FLOAT, GL_FALSE, 0, vertices);
-    
-    // 传递纹理坐标
-    // normal
-    static const GLfloat coords[] = {
-        0, 0,
-        1, 0,
-        0, 1,
-        1, 1
-    };
-    glEnableVertexAttribArray(_textureCoordSlot2);
-    glVertexAttribPointer(_textureCoordSlot2, 2, GL_FLOAT, GL_FALSE, 0, coords);
-    
-    glActiveTexture(GL_TEXTURE5);
-    glBindTexture(GL_TEXTURE_2D, filterTexture);
-    glUniform1i(_textureSlot2, 5);
-    
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-    [context presentRenderbuffer:GL_RENDERBUFFER];
 }
 
 -(void)updateValue
@@ -374,6 +343,12 @@
             [brightnessShader prepareToDraw];
             // 传递调节亮度的值区间（-1， 1）
             glUniform1f(_brightness, value);
+            
+            glActiveTexture(GL_TEXTURE5);
+            glBindTexture(GL_TEXTURE_2D, originalTexture);
+            glUniform1i(_brightnessTextureSlot, 5);
+            
+            [self drawRawImageWithPositionSlot:_brightnessPositionSlot TextureCoordSlot:_brightnessTextureCoordSlot];
         }
             break;
         case 1:
@@ -382,6 +357,12 @@
             [contrastShader prepareToDraw];
             // 传递调节对比度的值区间（0.0， 4.0）
             glUniform1f(_contrast, value);
+            
+            glActiveTexture(GL_TEXTURE5);
+            glBindTexture(GL_TEXTURE_2D, originalTexture);
+            glUniform1i(_contrastTextureSlot, 5);
+            
+            [self drawRawImageWithPositionSlot:_contrastPositionSlot TextureCoordSlot:_contrastTextureCoordSlot];
         }
             break;
         case 2:
@@ -397,6 +378,12 @@
             glUniform1f(_green, value);
             glUniform1f(_red, 1.0f);
             glUniform1f(_blue, 1.0f);
+            
+            glActiveTexture(GL_TEXTURE5);
+            glBindTexture(GL_TEXTURE_2D, originalTexture);
+            glUniform1i(_rgbTextureSlot, 5);
+            
+            [self drawRawImageWithPositionSlot:_rgbPositionSlot TextureCoordSlot:_rgbTextureCoordSlot];
         }
             break;
         case 3:
@@ -405,6 +392,12 @@
             [hueShader prepareToDraw];
             CGFloat hue = fmodf(value, 360.0) * M_PI/180;
             glUniform1f(_hueAdjust, hue);
+            
+            glActiveTexture(GL_TEXTURE5);
+            glBindTexture(GL_TEXTURE_2D, originalTexture);
+            glUniform1i(_hueAdjustTextureSlot, 5);
+            
+            [self drawRawImageWithPositionSlot:_hueAdjustPositionSlot TextureCoordSlot:_hueAdjustTextureCoordSlot];
         }
             break;
         case 4:
@@ -418,23 +411,19 @@
             // 使用曝光度shader
             [exposureShader prepareToDraw];
             glUniform1f(_exposure, value);
+            
+            glActiveTexture(GL_TEXTURE5);
+            glBindTexture(GL_TEXTURE_2D, originalTexture);
+            glUniform1i(_exposureTextureSlot, 5);
+            
+            [self drawRawImageWithPositionSlot:_exposurePositionSlot TextureCoordSlot:_exposureTextureCoordSlot];
         }
             break;
         default:
             break;
     }
     
-    // 传递原始纹理数据
-    texName = [TextureLoader loadTexture:processImage];
-    glActiveTexture(GL_TEXTURE5);
-    glBindTexture(GL_TEXTURE_2D, texName);
-    glUniform1i(_textureSlot, 5);
-    
-    // 开始绘制
-    [self drawRawImage];
-    
-    // 绘制纹理完毕，开始绘制到屏幕上
-    [self renderToScreen];
+    [self renderToScreenWithTexture:filterTexture];
 }
 
 -(void)updateTabbar
