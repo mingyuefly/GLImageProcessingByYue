@@ -30,9 +30,9 @@
                                 <items>
                                     <tabBarItem title="Brightness" id="Jco-KT-MTB"/>
                                     <tabBarItem tag="1" title="Contrast" id="sno-gY-hA8"/>
-                                    <tabBarItem tag="2" title="rgb" id="FW3-8A-P4q"/>
+                                    <tabBarItem tag="2" title="saturation" id="FW3-8A-P4q"/>
                                     <tabBarItem tag="3" title="Hue" id="5jW-6Q-nHm"/>
-                                    <tabBarItem tag="4" title="exposure" id="2ZI-Fn-6YH"/>
+                                    <tabBarItem tag="4" title="sharpeness" id="2ZI-Fn-6YH"/>
                                 </items>
                             </tabBar>
                         </subviews>

@@ -368,22 +368,28 @@
         case 2:
         {
             // 使用饱和度shader
-//            [saturationShader prepareToDraw];
-//            // 传递调节饱和度的值区间（0， 2）
-//            glUniform1f(_saturation, value);
-            
-            // 使用rgb的shader
-            [rgbShader prepareToDraw];
-            // 传递RGB值区间
-            glUniform1f(_green, value);
-            glUniform1f(_red, 1.0f);
-            glUniform1f(_blue, 1.0f);
+            [saturationShader prepareToDraw];
+            // 传递调节饱和度的值区间（0， 2）
+            glUniform1f(_saturation, value);
             
             glActiveTexture(GL_TEXTURE5);
             glBindTexture(GL_TEXTURE_2D, originalTexture);
-            glUniform1i(_rgbTextureSlot, 5);
+            glUniform1i(_saturationTextureSlot, 5);
             
-            [self drawRawImageWithPositionSlot:_rgbPositionSlot TextureCoordSlot:_rgbTextureCoordSlot];
+            [self drawRawImageWithPositionSlot:_saturationPositionSlot TextureCoordSlot:_saturationTextureCoordSlot];
+            
+            // 使用rgb的shader
+//            [rgbShader prepareToDraw];
+//            // 传递RGB值区间
+//            glUniform1f(_green, value);
+//            glUniform1f(_red, 1.0f);
+//            glUniform1f(_blue, 1.0f);
+//
+//            glActiveTexture(GL_TEXTURE5);
+//            glBindTexture(GL_TEXTURE_2D, originalTexture);
+//            glUniform1i(_rgbTextureSlot, 5);
+//
+//            [self drawRawImageWithPositionSlot:_rgbPositionSlot TextureCoordSlot:_rgbTextureCoordSlot];
         }
             break;
         case 3:
@@ -403,20 +409,26 @@
         case 4:
         {
             // 使用锐利度shader
-//            [sharpnessShader prepareToDraw];
-//            glUniform1f(_imageWidthFactor, 1.0 / realRect.size.width);
-//            glUniform1f(_imageHeightFactor, 1.0 / realRect.size.height);
-//            glUniform1f(_sharpness, value);
-            
-            // 使用曝光度shader
-            [exposureShader prepareToDraw];
-            glUniform1f(_exposure, value);
+            [sharpnessShader prepareToDraw];
+            glUniform1f(_imageWidthFactor, 1.0 / realRect.size.width);
+            glUniform1f(_imageHeightFactor, 1.0 / realRect.size.height);
+            glUniform1f(_sharpness, value);
             
             glActiveTexture(GL_TEXTURE5);
             glBindTexture(GL_TEXTURE_2D, originalTexture);
-            glUniform1i(_exposureTextureSlot, 5);
+            glUniform1i(_sharpnessTextureSlot, 5);
             
-            [self drawRawImageWithPositionSlot:_exposurePositionSlot TextureCoordSlot:_exposureTextureCoordSlot];
+            [self drawRawImageWithPositionSlot:_sharpnessPositionSlot TextureCoordSlot:_sharpnessTextureCoordSlot];
+            
+            // 使用曝光度shader
+//            [exposureShader prepareToDraw];
+//            glUniform1f(_exposure, value);
+//
+//            glActiveTexture(GL_TEXTURE5);
+//            glBindTexture(GL_TEXTURE_2D, originalTexture);
+//            glUniform1i(_exposureTextureSlot, 5);
+//
+//            [self drawRawImageWithPositionSlot:_exposurePositionSlot TextureCoordSlot:_exposureTextureCoordSlot];
         }
             break;
         default:
@@ -446,7 +458,7 @@
             break;
         case 2:
         {
-            [self.slider setMaximumValue:2.0f];
+            [self.slider setMaximumValue:4.0f];
             [self.slider setValue:1.0f];
             [self.slider setMinimumValue:0.0f];
         }
@@ -462,7 +474,7 @@
         {
             [self.slider setMaximumValue:4.0f];
             [self.slider setValue:0.0f];
-            [self.slider setMinimumValue:-4.0f];
+            [self.slider setMinimumValue:-1.0f];
         }
             break;
         default:
