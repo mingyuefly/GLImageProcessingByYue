@@ -410,8 +410,8 @@
         {
             // 使用锐利度shader
             [sharpnessShader prepareToDraw];
-            glUniform1f(_imageWidthFactor, 1.0 / realRect.size.width);
-            glUniform1f(_imageHeightFactor, 1.0 / realRect.size.height);
+            glUniform1f(_imageWidthFactor, 1.0 / 320);
+            glUniform1f(_imageHeightFactor, 1.0 / 240);
             glUniform1f(_sharpness, value);
             
             glActiveTexture(GL_TEXTURE5);
