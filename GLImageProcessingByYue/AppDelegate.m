@@ -6,6 +6,8 @@
 //  Copyright © 2017年 guomingyue. All rights reserved.
 //  developer
 //  git merge test
+//  release
+//  git merge test 
 
 #import "AppDelegate.h"
 
